@@ -1,5 +1,5 @@
 import { COCKTAIL_CODES } from "./config"
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import CocktailsList from "./components/CocktailsList"
 import Cocktail from "./components/Cocktail";
@@ -14,14 +14,12 @@ function App() {
           <CocktailsList cocktails={COCKTAIL_CODES}/>
         </div>
         <div className="application__cocktail-view">
-          <BrowserRouter>
             <Routes>
               <Route path='/' element={<Cocktail cocktailCode={COCKTAIL_CODES[0]} />} />
-              {COCKTAIL_CODES.map(cocktail => {
+              { COCKTAIL_CODES.map(cocktail => {
                 return <Route path={cocktail} element={<Cocktail cocktailCode={cocktail} />} />
-              })}
+              }) }
             </Routes>
-          </BrowserRouter>
         </div>
       </div>
     </>
