@@ -1,5 +1,5 @@
 import { COCKTAIL_CODES } from "./config"
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import CocktailsList from "./components/CocktailsList"
 import Cocktail from "./components/Cocktail";
@@ -15,7 +15,7 @@ function App() {
         </div>
         <div className="application__cocktail-view">
             <Routes>
-              <Route path='/' element={<Cocktail cocktailCode={COCKTAIL_CODES[0]} />} />
+              <Route path='/' element={<Navigate to={`/${COCKTAIL_CODES[0]}`} replace />} />
               { COCKTAIL_CODES.map(cocktail => {
                 return <Route path={cocktail} element={<Cocktail cocktailCode={cocktail} />} />
               }) }
