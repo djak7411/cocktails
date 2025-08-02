@@ -1,8 +1,9 @@
+import { FC } from 'react';
 import styles from '../styles/components/CocktailsList.module.sass';
 import { NavLink, useLocation } from 'react-router-dom';
 import firstLetterToUpper from '../lib/firstLetterToUpper';
 
-export default function CocktailsList({ cocktails }) {
+const CocktailsList: FC<{ cocktails: string[] }> = ({ cocktails }) => {
   const location = useLocation();
 
   return (
@@ -19,3 +20,5 @@ export default function CocktailsList({ cocktails }) {
     </ul>
   );
 }
+
+export default CocktailsList;

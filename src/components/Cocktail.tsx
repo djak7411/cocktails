@@ -1,14 +1,16 @@
-import { useGetCocktailQuery } from '../api/apiSlice';
+import { FC } from 'react';
+import { useGetCocktailQuery } from '../api/cocktailsApiSlice';
+import { ICocktail } from '@/types/Cocktail';
 import styles from '../styles/components/Cocktail.module.sass';
 
-export default function Cocktail({ cocktailCode }){
+const Cocktail: FC<{ cocktailCode: string }> = ({ cocktailCode }) => {
   const { 
-    data: cocktails, 
+    data: cocktailsResponse, 
     isLoading, 
     isError, 
   } = useGetCocktailQuery(cocktailCode);
 
-  function getIngredientsWithMeasures(cocktail) {
+  function getIngredientsWithMeasures(cocktail: ICocktail) {
     return Object.entries(cocktail)
       .filter(([key, value]) => 
         key.startsWith('strIngredient') && value,
@@ -17,7 +19,7 @@ export default function Cocktail({ cocktailCode }){
         const num = key.replace('strIngredient', '');
         const measureKey = `strMeasure${num}`;
 
-        return <div key={ingredient + inx}>
+        return <div key={ingredient! + inx}>
           <span>{ingredient}</span>
           &nbsp;
           <span>{cocktail[measureKey]}</span>
@@ -29,7 +31,7 @@ export default function Cocktail({ cocktailCode }){
   if (isError) return <div>Error loading cocktail</div>;
 
   return (
-    cocktails?.drinks.map((cocktail, inx) => {
+    cocktailsResponse?.drinks?.map((cocktail, inx) => {
       return <div className={styles.cocktail} key={cocktail.strDrink + inx}>
         <div className={styles.cocktail__descriptionContainer}>
           <span className={styles.cocktail__name}>
@@ -42,8 +44,8 @@ export default function Cocktail({ cocktailCode }){
           </p>
           <p>
             Instructions:
-            <p>{cocktail.strInstructions}</p>
           </p>
+          <p>{cocktail.strInstructions}</p>
           <div className={styles.cocktail__ingredients}>
             List of ingredients: {getIngredientsWithMeasures(cocktail)}
           </div>
@@ -61,3 +63,5 @@ export default function Cocktail({ cocktailCode }){
   );
 
 }
+
+export default Cocktail;
