@@ -14,8 +14,6 @@ const LazyImage = ({ src, className, width, height, loadInitially = false, obser
   const imgRef = useRef<HTMLImageElement>(null);
   const [isLoaded, setIsLoaded] = useState(loadInitially);
 
-  console.log(observerOptions)
-
   const observerCallback = useCallback<IntersectionObserverCallback>(
     (entries) => {
       if (entries[0].isIntersecting) {
