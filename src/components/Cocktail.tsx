@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { useGetCocktailQuery } from '../api/cocktailsApiSlice';
 import { ICocktail } from '@/types/Cocktail';
 import styles from '../styles/components/Cocktail.module.sass';
+import { useNavigate } from 'react-router-dom';
 
 const Cocktail: FC<{ cocktailCode: string }> = ({ cocktailCode }) => {
   const { 
@@ -9,6 +10,8 @@ const Cocktail: FC<{ cocktailCode: string }> = ({ cocktailCode }) => {
     isLoading, 
     isError, 
   } = useGetCocktailQuery(cocktailCode);
+
+  const navigate = useNavigate();
 
   function getIngredientsWithMeasures(cocktail: ICocktail) {
     return Object.entries(cocktail)
@@ -26,6 +29,10 @@ const Cocktail: FC<{ cocktailCode: string }> = ({ cocktailCode }) => {
         </div>;
       });
   }
+
+  if (!isLoading && !cocktailsResponse?.drinks) {
+      navigate('/404', { replace: true });
+    }
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading cocktail</div>;
