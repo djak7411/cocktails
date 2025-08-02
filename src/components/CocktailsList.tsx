@@ -1,11 +1,14 @@
-import { FC } from 'react';
 import styles from '../styles/components/CocktailsList.module.sass';
 import { NavLink, useLocation } from 'react-router-dom';
 import firstLetterToUpper from '../lib/firstLetterToUpper';
 
-const CocktailsList: FC<{ cocktails: string[] }> = ({ cocktails }) => {
+interface CocktailsListProps {
+  cocktails: string[]
+}
+
+const CocktailsList = ({ cocktails }: CocktailsListProps) => {
   const location = useLocation();
-  
+
   return (
     <ul className={styles.list}>
       { cocktails.map((cocktail, inx) => {

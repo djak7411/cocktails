@@ -1,10 +1,14 @@
-import { FC } from 'react';
 import { useGetCocktailQuery } from '../api/cocktailsApiSlice';
 import { ICocktail } from '@/types/Cocktail';
 import styles from '../styles/components/Cocktail.module.sass';
+import LazyImage from './ui/LazyImage';
 import { useNavigate } from 'react-router-dom';
 
-const Cocktail: FC<{ cocktailCode: string }> = ({ cocktailCode }) => {
+interface CocktailProps {
+  cocktailCode: string,
+}
+
+const Cocktail = ({ cocktailCode }: CocktailProps,  ) => {
   const { 
     data: cocktailsResponse, 
     isLoading, 
@@ -58,9 +62,8 @@ const Cocktail: FC<{ cocktailCode: string }> = ({ cocktailCode }) => {
           </div>
         </div>
         <div className={styles.cocktail__pictureContainer}>
-          <img
+          <LazyImage
             src={cocktail.strDrinkThumb}
-            loading="lazy"
             width={200}
             height={150}
           />
