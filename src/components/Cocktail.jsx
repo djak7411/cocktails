@@ -1,17 +1,17 @@
-import { useGetCocktailQuery } from "../api/apiSlice"
-import styles from '../styles/components/Cocktail.module.sass'
+import { useGetCocktailQuery } from '../api/apiSlice';
+import styles from '../styles/components/Cocktail.module.sass';
 
-export default function Cocktail({cocktailCode}){
+export default function Cocktail({ cocktailCode }){
   const { 
     data: cocktails, 
     isLoading, 
-    isError 
-  } = useGetCocktailQuery(cocktailCode)
+    isError, 
+  } = useGetCocktailQuery(cocktailCode);
 
   function getIngredientsWithMeasures(cocktail) {
     return Object.entries(cocktail)
       .filter(([key, value]) => 
-        key.startsWith('strIngredient') && value
+        key.startsWith('strIngredient') && value,
       )
       .map(([key, ingredient], inx) => {
         const num = key.replace('strIngredient', '');
@@ -21,7 +21,7 @@ export default function Cocktail({cocktailCode}){
           <span>{ingredient}</span>
           &nbsp;
           <span>{cocktail[measureKey]}</span>
-        </div>
+        </div>;
       });
   }
 
@@ -32,21 +32,21 @@ export default function Cocktail({cocktailCode}){
     cocktails?.drinks.map((cocktail, inx) => {
       return <div className={styles.cocktail} key={cocktail.strDrink + inx}>
         <div className={styles.cocktail__descriptionContainer}>
-        <span className={styles.cocktail__name}>
-          {cocktail.strDrink}
-        </span>
-        <p className={styles.cocktail__features}>
-          <span>{cocktail.strCategory}</span>
-          <span>{cocktail.strAlcoholic}</span>
-          <span>{cocktail.strGlass}</span>
-        </p>
-        <p>
-          Instructions:
-          <p>{cocktail.strInstructions}</p>
-        </p>
-        <div className={styles.cocktail__ingredients}>
-          List of ingredients: {getIngredientsWithMeasures(cocktail)}
-        </div>
+          <span className={styles.cocktail__name}>
+            {cocktail.strDrink}
+          </span>
+          <p className={styles.cocktail__features}>
+            <span>{cocktail.strCategory}</span>
+            <span>{cocktail.strAlcoholic}</span>
+            <span>{cocktail.strGlass}</span>
+          </p>
+          <p>
+            Instructions:
+            <p>{cocktail.strInstructions}</p>
+          </p>
+          <div className={styles.cocktail__ingredients}>
+            List of ingredients: {getIngredientsWithMeasures(cocktail)}
+          </div>
         </div>
         <div className={styles.cocktail__pictureContainer}>
           <img
@@ -56,8 +56,8 @@ export default function Cocktail({cocktailCode}){
             height={150}
           />
         </div>
-      </div>
+      </div>;
     })
-  )
+  );
 
 }

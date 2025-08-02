@@ -1,1 +1,1 @@
-export const COCKTAIL_CODES = ["margarita", "mojito", "a1", "kir"]
+export const COCKTAIL_CODES = ['margarita', 'mojito', 'a1', 'kir'];

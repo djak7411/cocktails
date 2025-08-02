@@ -1,8 +1,8 @@
-import styles from '../styles/components/CocktailsList.module.sass'
+import styles from '../styles/components/CocktailsList.module.sass';
 import { NavLink, useLocation } from 'react-router-dom';
 import firstLetterToUpper from '../lib/firstLetterToUpper';
 
-export default function CocktailsList({cocktails}) {
+export default function CocktailsList({ cocktails }) {
   const location = useLocation();
 
   return (
@@ -10,12 +10,12 @@ export default function CocktailsList({cocktails}) {
       { cocktails.map((cocktail, inx) => {
         return (
           <li key={'cocktails-list-' + inx} className={location.pathname === `/${cocktail}` ? styles.current : ''}>
-          <NavLink className={styles.navigation_item} to={'/' + cocktail}>
-            {firstLetterToUpper(cocktail)}
-          </NavLink>
+            <NavLink className={styles.navigation_item} to={'/' + cocktail}>
+              {firstLetterToUpper(cocktail)}
+            </NavLink>
           </li>
-        )
+        );
       }) }
     </ul>
-  )
+  );
 }
