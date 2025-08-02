@@ -1,4 +1,5 @@
 import { useGetCocktailQuery } from "../api/apiSlice"
+import styles from '../styles/components/Cocktail.module.sass'
 
 export default function Cocktail({cocktailCode}){
   const { 
@@ -28,14 +29,33 @@ export default function Cocktail({cocktailCode}){
   if (isError) return <div>Error loading cocktail</div>;
 
   return (
-    cocktails.drinks.map((cocktail, inx) => {
-      return <div key={cocktail.strDrink + inx}>
-        strDrink: {cocktail.strDrink}
-        strCategory: {cocktail.strCategory}
-        strGlass: {cocktail.strGlass}
-        strInstructions: {cocktail.strInstructions}
-        strDrinkThumb: {cocktail.strDrinkThumb}
-        List of ingredients: {getIngredientsWithMeasures(cocktail)}
+    cocktails?.drinks.map((cocktail, inx) => {
+      return <div className={styles.cocktail} key={cocktail.strDrink + inx}>
+        <div className={styles.cocktail__descriptionContainer}>
+        <span className={styles.cocktail__name}>
+          {cocktail.strDrink}
+        </span>
+        <p className={styles.cocktail__features}>
+          <span>{cocktail.strCategory}</span>
+          <span>{cocktail.strAlcoholic}</span>
+          <span>{cocktail.strGlass}</span>
+        </p>
+        <p>
+          Instructions:
+          <p>{cocktail.strInstructions}</p>
+        </p>
+        <div className={styles.cocktail__ingredients}>
+          List of ingredients: {getIngredientsWithMeasures(cocktail)}
+        </div>
+        </div>
+        <div className={styles.cocktail__pictureContainer}>
+          <img
+            src={cocktail.strDrinkThumb}
+            loading="lazy"
+            width={200}
+            height={150}
+          />
+        </div>
       </div>
     })
   )

@@ -7,7 +7,8 @@ body
   box-sizing: border-box
 
 .application
-  width: 1024px
+  max-width: 1024px
+  min-width: 360px
   display: flex
   border: 2px solid black
   height: 728px
@@ -15,8 +16,22 @@ body
     padding: 16px
     display: flex
   &__navigation
-    width: 25%
+    width: 40%
     border-right: 1px solid lightgray
     overflow: auto
   &__cocktail-view
-    width: 75%
+    width: 60%
+    overflow: auto
+    display: flex
+    flex-direction: column
+
+.not-found
+  margin: auto
+  font-size: 2rem
+
+@media (min-width: 768px)
+  .application
+    &__navigation
+      width: 25%
+    &__cocktail-view
+      width: 75%

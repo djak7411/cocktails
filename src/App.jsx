@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 import CocktailsList from "./components/CocktailsList"
 import Cocktail from "./components/Cocktail";
+import NotFound from "./components/NotFound";
 
 function App() {
 
@@ -14,12 +15,13 @@ function App() {
           <CocktailsList cocktails={COCKTAIL_CODES}/>
         </div>
         <div className="application__cocktail-view">
-            <Routes>
-              <Route path='/' element={<Navigate to={`/${COCKTAIL_CODES[0]}`} replace />} />
-              { COCKTAIL_CODES.map(cocktail => {
-                return <Route path={cocktail} element={<Cocktail cocktailCode={cocktail} />} />
-              }) }
-            </Routes>
+          <Routes>
+            <Route path='/' element={<Navigate to={`/${COCKTAIL_CODES[0]}`} replace />} />
+            { COCKTAIL_CODES.map(cocktail => {
+              return <Route path={cocktail} element={<Cocktail cocktailCode={cocktail} />} />
+            }) }
+            <Route path='*' element={<NotFound />} />
+          </Routes>
         </div>
       </div>
     </>

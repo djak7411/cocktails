@@ -1,5 +1,6 @@
 import styles from '../styles/components/CocktailsList.module.sass'
 import { NavLink, useLocation } from 'react-router-dom';
+import firstLetterToUpper from '../lib/firstLetterToUpper';
 
 export default function CocktailsList({cocktails}) {
   const location = useLocation();
@@ -10,7 +11,7 @@ export default function CocktailsList({cocktails}) {
         return (
           <li key={'cocktails-list-' + inx} className={location.pathname === `/${cocktail}` ? styles.current : ''}>
           <NavLink className={styles.navigation_item} to={'/' + cocktail}>
-            {cocktail}
+            {firstLetterToUpper(cocktail)}
           </NavLink>
           </li>
         )
