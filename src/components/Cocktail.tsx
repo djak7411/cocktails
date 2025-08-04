@@ -1,4 +1,4 @@
-import { useGetCocktailQuery } from '../api/cocktailsApiSlice';
+import { useGetCocktailQuery } from '@/api/cocktailsApiSlice';
 import { ICocktail } from '@/types/Cocktail';
 import styles from '../styles/components/Cocktail.module.sass';
 import LazyImage from './ui/LazyImage';
