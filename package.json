@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "preview": "vite preview",
+    "test:ci": "vitest run --silent",
     "test": "vitest"
   },
   "dependencies": {
