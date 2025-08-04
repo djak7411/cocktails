@@ -36,7 +36,7 @@ const MOCK_COCKTAILS: Record<string, { drinks: ICocktail[] | null }> = {
 };
 
 export const mockApiSlice = createApi({
-  reducerPath: 'mockCocktailsApi',
+  reducerPath: 'cocktailsApi',
   baseQuery: async (args) => {
     const cocktailCode = args.split('=')[1];
     const response = MOCK_COCKTAILS[cocktailCode] || { drinks: null };

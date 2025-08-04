@@ -13,6 +13,9 @@ export default defineConfig({
  test: {
     globals: true,
     environment: 'jsdom',
+    alias: {
+      '@/api/cocktailsApiSlice': '@/api/mocks/mockCocktailsApiSlice',
+    },
     setupFiles: './src/test/setup.ts',
     css: true,
     coverage: {
